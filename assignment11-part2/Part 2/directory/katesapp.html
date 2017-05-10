@@ -1,0 +1,102 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Kate's Directory</title>
+	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script>
+		$(function() {
+		$.ajax({
+			type: "get",
+			url: "data/json.js",
+			beforeSend: function() {
+				$("#people").html("Loading...");
+			},
+			timeout: 10000,
+			error: function(xhr, status, error) {
+				alert("Error: " + xhr.status + " - " + error);
+			},
+			dataType: "json",
+			success: function(response) {
+                $("#people").html("");
+			$.each(response, function() {
+				$.each(this, function(key, value) {
+					$("#people").append( value.name + '<br>' + value.title + '<br>' + value.ImagePath + '<br>' + value.OfficeNumber +'<br>' + value.CellNumber +'<br>' + value.Email + '<br><br>');
+				});
+			});
+			}
+		});
+	});
+        
+        
+    </script>
+</head>
+<body>
+<!--   page 1-->
+<div data-role="page" id="page1" data-theme="a">
+    <header data-role="header">
+        <h1>Directory</h1>
+    </header> 
+    <div data-role="navbar">
+        <ul>
+           <li><a href="#page1"  class="ui-btn-active">Home</a></li>
+           <li><a href="#page2"  >notHome</a></li>
+        </ul>
+    </div>
+    <div data-role="content">
+       	<form>
+       	<label for="search"></label>
+       	
+<ul id="santa" data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search " data-inset="true">
+  <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+</ul>
+       	
+       	
+       	
+       	
+        <h1>Welcome to Directory!</h1>
+        <p>This is a my very first app :) </p>
+    </div>
+    
+    <footer data-role="footer" data-position="fixed">
+   <h4> Cotyright &copy; 2017</h4>
+   </footer>
+    
+</div>   
+   
+   
+<!--   page2 -->
+   
+   
+   <div data-role="page" id="page2" data-theme="a">
+    <header data-role="header">
+        <h1>Directory</h1>
+    </header> 
+       <div data-role="navbar">
+        <ul>
+           <li><a href="#page1"  >Home</a></li>
+           <li><a href="#page2" class="ui-btn-active" >notHome</a></li>
+        </ul>
+    </div>
+    <div data-role="content">
+    <div id="people">
+        
+    </div>
+
+    </div>
+    
+    <footer data-role="footer" data-position="fixed">
+   <h4> Cotyright &copy; 2017</h4>
+   </footer>
+    
+</div>  
+    </body>
+</html>
